@@ -93,7 +93,11 @@ export default function AddStops(params: {
     if (QueryRoutes.data) {
         return (
             <div className="flex justify-center flex-col gap-5 w-full min-h-screen items-center pb-10 pt-20 pl-56">
-                {QueryRoutes.data.data.stops.map((route: any, index: number) => {
+                {QueryRoutes.data.data.stops.map((route: {
+                    id: string;
+                    time: string;
+                    description: string
+                }, index: number) => {
                     return <div className="border-2 w-1/2 bg-white p-2" key={route.id}>
                         <p className="font-bold text-lg ">stop: {index + 1}</p>
                         <p className="text-lg font-bold">time: {route.time}</p>
@@ -126,7 +130,15 @@ export default function AddStops(params: {
                                     {QueryLocation.isLoading ? (
                                         "Loading..."
                                     ) : <div className="border-2 border-black w-full  overflow-auto">
-                                        {QueryLocation.data?.predictions.map((prediction: any, index: number) => (
+                                        {QueryLocation.data?.predictions.map((prediction: {
+                                            description: string;
+                                            geometry: {
+                                                location: {
+                                                    lat: number;
+                                                    lng: number;
+                                                };
+                                            };
+                                        }, index: number) => (
                                             <p onClick={() => {
                                                 Setplace(prediction.description)
                                                 Setlat(prediction.geometry.location.lat)

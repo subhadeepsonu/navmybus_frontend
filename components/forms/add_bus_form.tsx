@@ -100,8 +100,11 @@ export default function AddBusForm() {
                             <FormControl>
                                 {(QueryRoutes.data) ? <select className="shadow-sm border-[1px] block p-2 w-full rounded-lg" {...field}>
                                     <option value="">Select Route</option>
-                                    {QueryRoutes.data.data.map((s: any, index: any) => {
-                                        return <option key={index.id} value={s.id}>{s.routeName}</option>
+                                    {QueryRoutes.data.data.map((s: {
+                                        id: string;
+                                        routeName: string;
+                                    }, index: number) => {
+                                        return <option key={index} value={s.id}>{s.routeName}</option>
                                     })}
                                 </select> : "loading"}
                             </FormControl>
@@ -120,8 +123,11 @@ export default function AddBusForm() {
                             <FormControl>
                                 {(QueryDrivers.data) ? <select className="shadow-sm border-[1px] block p-2 w-full rounded-lg" {...field}>
                                     <option value="">Select Driver</option>
-                                    {QueryDrivers.data.data.map((s: any, index: any) => {
-                                        return <option key={index.id} value={s.id}>{s.name}</option>
+                                    {QueryDrivers.data.data.map((s: {
+                                        id: string;
+                                        name: string;
+                                    }, index: number) => {
+                                        return <option key={index} value={s.id}>{s.name}</option>
                                     })}
                                 </select> : "loading"}
                             </FormControl>
